@@ -1,0 +1,7 @@
+SIZE 5
+BALL 0,1,red
+BALL 0,2,red
+BALL 0,3,red
+BALL 0,4,red
+BALL 2,0,red
+MOVE 2,0,0,0

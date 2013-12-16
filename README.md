@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/krasnoukhov/lines.png)](https://travis-ci.org/krasnoukhov/lines)
 
+## Spoiler Alert
+
+Не подглядывайте ```samples``` и ```solutions``` перед тем, как решить. Так ведь не интересно!
+
 ## Задача
 
 Игра Lines: реализовать проверку наличия на поле линий.

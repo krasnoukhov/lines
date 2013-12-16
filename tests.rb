@@ -3,18 +3,15 @@ class Solution
   
   class << self
     def all
-      @all ||= []
+      return @all if @all
+      @all = []
       
       Dir.glob("./solutions/*.rb").each do |rb|
         @all << new("ruby #{rb}")
       end
       
-      Dir.glob("./solutions/*.sh").each do |sh|
-        @all << new("bash #{sh}")
-      end
-      
-      Dir.glob("./solutions/*.c").each do |c|
-        `gcc #{c} -o #{c}.out && chmod +x #{c}.out`
+      Dir.glob("./solutions/*.cpp").each do |c|
+        `g++ #{c} -o #{c}.out && chmod +x #{c}.out`
         @all << new("#{c}.out")
       end
       
@@ -25,7 +22,6 @@ class Solution
       @samples ||= Dir.glob("./samples/*.{0,1,2}").map do |sample|
         {
           file: sample,
-          in: File.open(sample).read,
           out: File.extname(sample).gsub(/^\./, "")
         }
       end
@@ -46,7 +42,7 @@ class Solution
       
       3.times do
         start = Time.new
-        result = `#{cmd} "#{sample[:in]}"`
+        result = `#{cmd} < #{sample[:file]}`
         runtimes << Time.new - start
       end
       
@@ -84,4 +80,4 @@ end
 winners = results.select(&:passed?).sort_by(&:runtime)
 puts "WINNERS!"
 puts winners.any? ? winners.each_with_index.map { |v, k| "#{k+1}: #{v.name}" } : "No one :("
-exit winners.any? ? 0 : 1
+exit winners.size == Solution.all.size ? 0 : 1

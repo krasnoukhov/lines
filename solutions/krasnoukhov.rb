@@ -108,4 +108,4 @@ class Lines
   end
 end
 
-puts Lines.new(ARGV.first).result
+puts Lines.new(STDIN.read).result

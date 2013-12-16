@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 int DetectLine(int **&field,int n){
@@ -128,8 +129,8 @@ int main(){
 	int n; 
 	string strParam;
 	
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
+//	freopen("input.txt","r",stdin);
+//	freopen("output.txt","w",stdout);
 
 	//Читаем размер
 	cin >> strParam >> n;

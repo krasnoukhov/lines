@@ -1,5 +1,7 @@
 # Lines
 
+[![Build Status](https://travis-ci.org/krasnoukhov/lines.png)](https://travis-ci.org/krasnoukhov/lines)
+
 ## Задача
 
 Игра Lines: реализовать проверку наличия на поле линий.

@@ -5,7 +5,7 @@
 using namespace std;
 
 int DetectLine(int **&field,int n){
-	int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
+    int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
 
 	for (i=0;i<n;i++){
 		//Поиск самой длинной линии по горизонтали                
@@ -74,7 +74,7 @@ int DetectLine(int **&field,int n){
 			totalLines++;
 
 		//Проверяем нижнюю часть ( направление //// )
-		pos=n;
+		pos=n-1;
 		maxLength=0;
 		tempLength=0;
 		tempColor=0;
@@ -122,7 +122,7 @@ int DetectLine(int **&field,int n){
 		maxLength=0;
 		tempLength=0;
 		tempColor=0;
-		for (j=0;j<n,pos+j<n,i!=0;j++){
+		for (j=0;i!=0 && j<n-pos;j++){
 			if (tempColor==0 && field[pos+j][j]!=0){
 				tempColor=field[pos+j][j];
 				tempLength=1;
@@ -220,7 +220,7 @@ int main(){
 	int n; 
 	string strParam;
 
-//	freopen("input.txt","r",stdin);
+	freopen("input.txt","r",stdin);
 //	freopen("output.txt","w",stdout);
 
 	//Читаем размер

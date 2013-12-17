@@ -4,7 +4,7 @@
 #include <stdlib.h>
 using namespace std;
 
-int DetectLine(int field[100][100],int n){
+int DetectLine(int **&field,int n){
 	int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
 
 	for (i=0;i<n;i++){
@@ -142,7 +142,7 @@ int DetectLine(int field[100][100],int n){
 	return totalLines;
 }
 
-int ReadAndMove(int field[100][100],int n){
+int ReadAndMove(int **&field,int n){
 	int x,y,x2,y2,result;
 	string strParam,strData,strColor,strTemp;
 
@@ -225,14 +225,14 @@ int main(){
 
 	//Читаем размер
 	cin >> strParam >> n;
-	int field[100][100]={0};
+//	int field[100][100]={0};
 	//Создали массив
-	//                int **field = new int *[n];
-	//                for (int i=0;i<n;i++) 
-	//                 field[i]=new int[n];
+	int **field = new int *[n];
+	
+	for (int i=0;i<n;i++) 
+		field[i]=new int[n];
 	for (int i=0;i<n;i++)
-		for(int j=0;j<n;j++)
-			field[i][j]=0;
+		for(int j=0;j<n;j++) field[i][j]=0;
 
 	//Заполняем массив входными данными и двигаем шарики
 	cout << ReadAndMove(field,n);

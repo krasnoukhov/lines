@@ -122,7 +122,9 @@ int ReadAndMove(int **&field,int n){
                 if(x>=0 && x<n && y>=0 && y<n)
                         if (strColor=="red") field[y][x]=1; else
                                 if (strColor=="green") field[y][x]=2; else
-                                        if (strColor=="blue") field[y][x]=3; else return 0;
+                                        if (strColor=="blue") field[y][x]=3; else {
+                        //do notthing return 0;
+                        }
 
                 cin >> strParam;
                 cin >> strData;
@@ -158,7 +160,9 @@ int ReadAndMove(int **&field,int n){
                         if(field[y2][x2]==0 && field[y][x]!=0){
                                 field[y2][x2]=field[y][x];
                                 field[y][x]=0;
-                        } else return 0;
+                        } else {
+                        //do notthing return 0;
+                        }
 
 
                 

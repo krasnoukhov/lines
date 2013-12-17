@@ -4,14 +4,14 @@
 #include <stdlib.h>
 using namespace std;
 
-int DetectLine(int **&field,int n){
+int DetectLine(int field[100][100],int n){
         int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
 
         for (i=0;i<n;i++){
                 //Поиск самой длинной линии по горизонтали                
                 maxLength=0;
                 tempLength=0;
-                tempColor=field[i][0];
+                tempColor=0;
                 for (j=0;j<n;j++){
                         if (tempColor==0 && field[i][j]!=0){
                                 tempColor=field[i][j];
@@ -30,7 +30,7 @@ int DetectLine(int **&field,int n){
                 //Поиск самой длинной линии по вертикали
                 maxLength=0;
                 tempLength=0;
-                tempColor=field[0][i];
+                tempColor=0;
                 for (j=0;j<n;j++){
                         if (tempColor==0 && field[j][i]!=0){
                                 tempColor=field[j][i];
@@ -48,13 +48,14 @@ int DetectLine(int **&field,int n){
 
         }
         
+
         //Поиск в диагонали
         for (i=0;i<n;i++){
-                //Поиск самой длинной линии по горизонтали                
+                //Поиск самой длинной линии по горизонтали               
                 pos=0;
                 maxLength=0;
                 tempLength=0;
-                tempColor=field[i][j];
+                tempColor=0;
                 for (j=i;j>0,pos<=i;j--){
                         if (tempColor==0 && field[pos][j]!=0){
                                 tempColor=field[pos][j];
@@ -67,6 +68,28 @@ int DetectLine(int **&field,int n){
                                 tempLength=1;
                         }
                         pos++;
+                }
+                
+                if(maxLength>=5) 
+					totalLines++;
+
+				//Проверяем нижнюю часть
+				pos=n;
+                maxLength=0;
+                tempLength=0;
+                tempColor=0;
+                for (j=i;j<n,i!=0,pos>=0;j++){
+                        if (tempColor==0 && field[pos][j]!=0){
+                                tempColor=field[pos][j];
+                                tempLength=1;
+                        } else if(tempColor==field[pos][j] && tempColor!=0){
+                                tempLength++;
+                                if(maxLength<tempLength) maxLength=tempLength;
+                        } else if(tempColor!=field[pos][j] && tempColor!=0){
+                                tempColor=field[pos][j];
+                                tempLength=1;
+                        }
+                        pos--;
                 }
                 
                 if(maxLength>=5) 
@@ -97,7 +120,7 @@ int DetectLine(int **&field,int n){
         return totalLines;
 }
 
-int ReadAndMove(int **&field,int n){
+int ReadAndMove(int field[100][100],int n){
         int x,y,x2,y2,result;
         string strParam,strData,strColor,strTemp;
 
@@ -123,9 +146,8 @@ int ReadAndMove(int **&field,int n){
                         if (strColor=="red") field[y][x]=1; else
                                 if (strColor=="green") field[y][x]=2; else
                                         if (strColor=="blue") field[y][x]=3; else {
-                        //do notthing return 0;
-                        }
-
+										//	return 0;
+										}
                 cin >> strParam;
                 cin >> strData;
 
@@ -156,14 +178,12 @@ int ReadAndMove(int **&field,int n){
                 strTemp=strData.substr(strData.find(",")+1,strData.length());
                 y2=atoi(strTemp.c_str());
 
-                if(x>=0 && x<n && y>=0 && y<n && x2>=0 && x2<n && y2>=0 && y2<n) 
+				if(0<=x<n && 0<=y<n && 0<=x2<n && 0<=y2<n && 0<=abs(x2-x)<=1 && 0<=abs(y2-y)<=1) 
                         if(field[y2][x2]==0 && field[y][x]!=0){
                                 field[y2][x2]=field[y][x];
                                 field[y][x]=0;
-                        } else {
-                        //do notthing return 0;
-                        }
-
+                        } else 
+							return 0;
 
                 
                 if (cin.eof()) break;
@@ -178,16 +198,16 @@ int main(){
         int n; 
         string strParam;
         
-      // freopen("input.txt","r",stdin);
-      // freopen("output.txt","w",stdout);
+//       freopen("input.txt","r",stdin);
+//      freopen("output.txt","w",stdout);
 
         //Читаем размер
         cin >> strParam >> n;
-
+		int field[100][100]={0};
         //Создали массив
-                int **field = new int *[n];
-                for (int i=0;i<n;i++) 
-                 field[i]=new int[n];
+//                int **field = new int *[n];
+//                for (int i=0;i<n;i++) 
+//                 field[i]=new int[n];
         for (int i=0;i<n;i++)
                 for(int j=0;j<n;j++)
                         field[i][j]=0;
@@ -195,7 +215,6 @@ int main(){
         //Заполняем массив входными данными и двигаем шарики
         cout << ReadAndMove(field,n);
 
-        delete []field;
+      //  delete []field;
         return 0;
 }
-

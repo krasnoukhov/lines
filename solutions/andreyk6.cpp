@@ -174,8 +174,8 @@ int main(){
         int n; 
         string strParam;
         
-        freopen("input.txt","r",stdin);
-//        freopen("output.txt","w",stdout);
+//       freopen("input.txt","r",stdin);
+//       freopen("output.txt","w",stdout);
 
         //Читаем размер
         cin >> strParam >> n;

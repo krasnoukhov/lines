@@ -55,7 +55,7 @@ int DetectLine(int **&field,int n){
                 maxLength=0;
                 tempLength=0;
                 tempColor=field[i][j];
-                for (j=i;j>0,pos<i;j--){
+                for (j=i;j>0,pos<=i;j--){
                         if (tempColor==0 && field[pos][j]!=0){
                                 tempColor=field[pos][j];
                                 tempLength=1;
@@ -69,27 +69,29 @@ int DetectLine(int **&field,int n){
                         pos++;
                 }
                 
-                if(maxLength>=5) totalLines++;
+                if(maxLength>=5) 
+					totalLines++;
                 
                 pos=0;
                 maxLength=0;
                 tempLength=0;
                 tempColor=0;
-                for (j=i;j<n;j++){
-                        if (tempColor==0 && field[j-i][j]!=0){
-                                tempColor=field[j-i][j];
+                for (j=0;j<n,pos<=i;j++){
+					if (tempColor==0 && field[pos][j]!=0){
+						tempColor=field[pos][j];
                                 tempLength=1;
-                        } else if(tempColor==field[j-i][j] && tempColor!=0){
-                                tempLength++;
+                        } else if(tempColor==field[pos][j] && tempColor!=0){
+                               tempLength++;
                                 if(maxLength<tempLength) maxLength=tempLength;
-                        } else if(tempColor!=field[j-i][j] && tempColor!=0){
-                                tempColor=field[j-i][j];
+					} else if(tempColor!=field[pos][j] && tempColor!=0){
+                                tempColor=field[pos][j];
                                 tempLength=1;
                         }
                         pos++;
                 }
                 
-                if(maxLength>=5) totalLines++;
+                if(maxLength>=5) 
+					totalLines++;
         }
         
         return totalLines;
@@ -174,8 +176,8 @@ int main(){
         int n; 
         string strParam;
         
-//       freopen("input.txt","r",stdin);
-//       freopen("output.txt","w",stdout);
+      // freopen("input.txt","r",stdin);
+      // freopen("output.txt","w",stdout);
 
         //Читаем размер
         cin >> strParam >> n;
@@ -183,7 +185,7 @@ int main(){
         //Создали массив
                 int **field = new int *[n];
                 for (int i=0;i<n;i++) 
-                        field[i]=new int[n];
+                 field[i]=new int[n];
         for (int i=0;i<n;i++)
                 for(int j=0;j<n;j++)
                         field[i][j]=0;
@@ -194,3 +196,4 @@ int main(){
         delete []field;
         return 0;
 }
+

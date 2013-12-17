@@ -74,16 +74,16 @@ int DetectLine(int **&field,int n){
                 pos=0;
                 maxLength=0;
                 tempLength=0;
-                tempColor=field[i][j];
-                for (j=i;j>0,pos<i;j--){
-                        if (tempColor==0 && field[j][pos]!=0){
-                                tempColor=field[j][pos];
+                tempColor=0;
+                for (j=i;j<n;j++){
+                        if (tempColor==0 && field[j-i][j]!=0){
+                                tempColor=field[j-i][j];
                                 tempLength=1;
-                        } else if(tempColor==field[j][pos] && tempColor!=0){
+                        } else if(tempColor==field[j-i][j] && tempColor!=0){
                                 tempLength++;
                                 if(maxLength<tempLength) maxLength=tempLength;
-                        } else if(tempColor!=field[j][pos] && tempColor!=0){
-                                tempColor=field[j][pos];
+                        } else if(tempColor!=field[j-i][j] && tempColor!=0){
+                                tempColor=field[j-i][j];
                                 tempLength=1;
                         }
                         pos++;

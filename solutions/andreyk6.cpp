@@ -182,8 +182,8 @@ int ReadAndMove(int field[100][100],int n){
                         if(field[y2][x2]==0 && field[y][x]!=0){
                                 field[y2][x2]=field[y][x];
                                 field[y][x]=0;
-                        } else 
-							return 0;
+                        } //else 
+                        //return 0;
 
                 
                 if (cin.eof()) break;

@@ -36,6 +36,7 @@ class Solution
   def run
     puts "Name: #{name}"
     runtimes = []
+    failures = []
     
     self.class.samples.each do |sample|
       result = ""
@@ -50,6 +51,7 @@ class Solution
         @passed += 1
         print "."
       else
+        failures << sample[:file]
         @failed += 1
         print "F"
       end
@@ -57,6 +59,7 @@ class Solution
     
     @runtime = runtimes.instance_eval { reduce(:+) / size.to_f }
     puts "", "Failed: #{failed}, passed #{passed}, avg runtime #{runtime}"
+    puts "Failures: #{failures.join(", ")}" if failures.any?
     puts "="*60, ""
     
     self

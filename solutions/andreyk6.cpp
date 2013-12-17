@@ -237,6 +237,6 @@ int main(){
 	//Заполняем массив входными данными и двигаем шарики
 	cout << ReadAndMove(field,n);
 
-	//  delete []field;
+	delete []field;
 	return 0;
 }

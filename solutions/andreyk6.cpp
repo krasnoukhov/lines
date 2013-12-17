@@ -161,15 +161,13 @@ int ReadAndMove(int **&field,int n){
                         } else return 0;
 
 
-                result = DetectLine(field,n);
-                if (result>=1) return result;
-
+                
                 if (cin.eof()) break;
                 cin >> strParam;
                 cin >> strData;
         }
 
-        return 0;
+        return DetectLine(field,n);
 } 
 
 int main(){

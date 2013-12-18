@@ -1,3 +1,5 @@
+require "timeout"
+
 class Solution
   attr_accessor :cmd, :failed, :passed, :runtime
   
@@ -44,11 +46,25 @@ class Solution
       
       3.times do
         start = Time.new
-        result = `#{cmd} < #{sample[:file]}`
+        
+        rout, wout = IO.pipe
+        pid = Process.spawn("#{cmd} < #{sample[:file]}", out: wout, pgroup: 0)
+        
+        begin
+          Timeout.timeout(5) do
+            Process.waitpid(pid, 0)
+            wout.close
+            result = rout.readlines.join("\n")
+          end
+        rescue Timeout::Error
+          Process.kill("KILL", pid) rescue nil
+          Process.kill("KILL", pid+1) rescue nil
+        end
+        
         runtimes << Time.new - start
       end
       
-      if result.strip == sample[:out]
+      if result.to_s.strip == sample[:out]
         @passed += 1
         print "."
       else

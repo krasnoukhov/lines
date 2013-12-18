@@ -11,7 +11,7 @@ int DetectLine(int **&field,int n){
 		//Поиск самой длинной линии по горизонтали                
 		maxLength=0;
 		tempLength=0;
-		tempColor=0;
+		tempColor=field[i][0];
 		for (j=0;j<n;j++){
 			if (tempColor==0 && field[i][j]!=0){
 				tempColor=field[i][j];
@@ -30,7 +30,7 @@ int DetectLine(int **&field,int n){
 		//Поиск самой длинной линии по вертикали
 		maxLength=0;
 		tempLength=0;
-		tempColor=0;
+		tempColor=field[0][i];
 		for (j=0;j<n;j++){
 			if (tempColor==0 && field[j][i]!=0){
 				tempColor=field[j][i];

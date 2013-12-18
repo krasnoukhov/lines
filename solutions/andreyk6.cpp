@@ -8,7 +8,7 @@ int DetectLine(int **&field,int n){
     int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
 
     for (i=0;i<n;i++){
-		//Поиск самой длинной линии по горизонтали                
+    	//Поиск самой длинной линии по горизонтали                
 		maxLength=0;
 		tempLength=0;
 		tempColor=field[i][0];
@@ -211,9 +211,13 @@ int ReadAndMove(int **&field,int n){
 				//	return 0;
 			}
 
-			
-			cin >> strParam;
-			cin >> strData;
+        x=n+100;
+        y=n+100;
+        x2=-n-100;
+        y2=-n-100;
+        		
+		cin >> strParam;
+		cin >> strData;
 	}
 
 	return DetectLine(field,n);

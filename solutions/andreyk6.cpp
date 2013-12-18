@@ -7,7 +7,7 @@ using namespace std;
 int DetectLine(int **&field,int n){
     int pos,tempLength,maxLength=0,tempColor,i,j=0,totalLines=0;
 
-	for (i=0;i<n;i++){
+    for (i=0;i<n;i++){
 		//Поиск самой длинной линии по горизонтали                
 		maxLength=0;
 		tempLength=0;
@@ -169,9 +169,8 @@ int ReadAndMove(int **&field,int n){
 		if(x>=0 && x<n && y>=0 && y<n)
 			if (strColor=="red") field[y][x]=1; else
 				if (strColor=="green") field[y][x]=2; else
-					if (strColor=="blue") field[y][x]=3; else {
-						//	return 0;
-					}
+					if (strColor=="blue") field[y][x]=3;
+                    
 					cin >> strParam;
 					cin >> strData;
 

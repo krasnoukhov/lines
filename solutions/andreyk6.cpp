@@ -210,7 +210,7 @@ int ReadAndMove(int **&field,int n){
 			} else { 
 				//	return 0;
 			}
-		if (cin.eof()) break;
+		if ( !feof( stdin )) break;
 		x=n+100;
         	y=n+100;
         	x2=-n-100;

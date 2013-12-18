@@ -201,7 +201,7 @@ int ReadAndMove(int **&field,int n){
 		strTemp=strData.substr(strData.find(",")+1,strData.length());
 		y2=atoi(strTemp.c_str());
 
-		if (cin.eof()) break;
+	
 
 		if(x>=0 && x<n && y>=0 && y<n && x2>=0 && x2<n && y2>=0 && y2<n && abs(x2-x)>=0 && abs(x2-x)<=1 && abs(y2-y)<=1 && abs(y2-y)>=0) 
 			if(field[y2][x2]==0 && field[y][x]!=0){
@@ -210,11 +210,11 @@ int ReadAndMove(int **&field,int n){
 			} else { 
 				//	return 0;
 			}
-
-        x=n+100;
-        y=n+100;
-        x2=-n-100;
-        y2=-n-100;
+		if (cin.eof()) break;
+		x=n+100;
+        	y=n+100;
+        	x2=-n-100;
+        	y2=-n-100;
         		
 		cin >> strParam;
 		cin >> strData;

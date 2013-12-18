@@ -78,7 +78,8 @@ int DetectLine(int **&field,int n){
 		maxLength=0;
 		tempLength=0;
 		tempColor=0;
-		for (j=i;j<n,i!=0,pos>=0;j++){
+		for (j=i;j<n,pos>=0;j++){
+			if(i==0) break;
 			if (tempColor==0 && field[pos][j]!=0){
 				tempColor=field[pos][j];
 				tempLength=1;
@@ -122,7 +123,8 @@ int DetectLine(int **&field,int n){
 		maxLength=0;
 		tempLength=0;
 		tempColor=0;
-		for (j=0;i!=0 && j<n-pos;j++){
+		for (j=0;j<n-pos;j++){
+			if(i==0) break;
 			if (tempColor==0 && field[pos+j][j]!=0){
 				tempColor=field[pos+j][j];
 				tempLength=1;
@@ -200,7 +202,7 @@ int ReadAndMove(int **&field,int n){
 		strTemp=strData.substr(strData.find(",")+1,strData.length());
 		y2=atoi(strTemp.c_str());
 
-		if(0<=x<n && 0<=y<n && 0<=x2<n && 0<=y2<n && 0<=abs(x2-x)<=1 && 0<=abs(y2-y)<=1) 
+		if(x>=0 && x<n && y>=0 && y<n && x2>=0 && x2<n && y2>=0 && y2<n && abs(x2-x)>=0 && abs(x2-x)<=1 && abs(y2-y)<=1 && abs(y2-y)>=0) 
 			if(field[y2][x2]==0 && field[y][x]!=0){
 				field[y2][x2]=field[y][x];
 				field[y][x]=0;
@@ -220,7 +222,7 @@ int main(){
 	int n; 
 	string strParam;
 
-	freopen("input.txt","r",stdin);
+//	freopen("input.txt","r",stdin);
 //	freopen("output.txt","w",stdout);
 
 	//Читаем размер

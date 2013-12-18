@@ -25,6 +25,7 @@ class Solution
           out: File.extname(sample).gsub(/^\./, "")
         }
       end
+      @samples.sort! { |a, b| a[:file] <=> b[:file] }
     end
   end
   

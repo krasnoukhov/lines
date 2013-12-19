@@ -47,7 +47,7 @@ void SM_move(struct SquareMatrix *matrix, int x1, int y1, int x2, int y2) {
       abs(x2-x1) >= 0 && abs(x2-x1) <= 1 && abs(y2-y1) >= 0 && abs(y2-y1) <= 1) {
     if ((old = SM_get(matrix, x1, y1))) {
       SM_set(matrix, x2, y2, old);
-      SM_set(matrix, x1, y1, (char)NULL);
+      SM_set(matrix, x1, y1, '\0');
     }
   }
 }
@@ -59,12 +59,12 @@ void SM_free(struct SquareMatrix *matrix) {
 
 void SM_find_plain_lines(struct SquareMatrix *matrix, LineType type, int *result) {
   char c = '\0';
-  int len = 0, max = 0;
+  int x, y, len = 0, max = 0;
 
-  for (int x = 0; x < matrix->size; x++) {
+  for (x = 0; x < matrix->size; x++) {
     len = 0;
     max = 0;
-    for (int y = 0; y < matrix->size; y++) {
+    for (y = 0; y < matrix->size; y++) {
       char v = (type == kVertical) ? SM_get(matrix, x, y) : SM_get(matrix, y, x);
       if (y == 0) {
         c = v;
@@ -81,13 +81,13 @@ void SM_find_plain_lines(struct SquareMatrix *matrix, LineType type, int *result
 
 void SM_find_diagonal_lines(struct SquareMatrix *matrix, LineType type, int *result) {
   char c = '\0';
-  int len = 0, max = 0;
+  int x, y, len = 0, max = 0;
 
-  for (int x = 0; x < matrix->size * 2 - 1; x++) {
+  for (x = 0; x < matrix->size * 2 - 1; x++) {
     len = 0;
     max = 0;
     int o = x < matrix->size ? 0 : x - matrix->size + 1;
-    for (int y = o; y <= matrix->size; y++) {
+    for (y = o; y <= matrix->size; y++) {
       int n = (type == kMainDiagonal) ? (x - y) : (matrix->size - 1) - (x - y);
       char v = SM_get(matrix, y, n);
       if (y - o == 0) {

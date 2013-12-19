@@ -17,6 +17,11 @@ class Solution
         @all << new("#{c}.out")
       end
       
+      Dir.glob("./solutions/*.c").each do |c|
+        `gcc #{c} -o #{c}.out && chmod +x #{c}.out`
+        @all << new("#{c}.out")
+      end
+      
       @all
     end
     
